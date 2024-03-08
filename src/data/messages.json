@@ -1,0 +1,40 @@
+{
+  "data": {
+    "introduction": {
+      "purpose": "introduction",
+      "message":"Hi, selamat datang di Hotel & Resto Food Lestari, <br /> jika mau memesan menu yang tersedia di kami, <br />ketik <b>'tampilkan menu</b>'",
+      "sender": "bot"
+    },
+    "question": {
+      "purpose": "question",
+      "message": "Salam kenal, kami akan tampilkan yang tersedia saat ini di Hotel & Resto Food Lestari! Berikut pilihan menunya:",
+      "options": ["1. Nasi Goreng", "2. Soto", "3. Gado-gado"],
+      "confirmation": "Silahkan pilih menu dengan klik atau mengetik no berapa yang Anda mau pesan"
+    },
+    "menuOne": {
+      "purpose": "menu nasi goreng",
+      "message": "Baik, kami akan menyiapkan menu <b>Nasi Goreng</b> yang anda pesan.",
+      "confirmation": "Mohon di tunggu :)"
+    },
+    "menuTwo": {
+      "purpose": "menu soto",
+      "message": "Baik, kami akan menyiapkan menu <b>Soto</b> yang anda pesan.",
+      "confirmation": "Mohon di tunggu :)"
+    },
+    "menuThree": {
+      "purpose": "menu gado-gado",
+      "message": "Baik, kami akan menyiapkan menu <b>Gado-gado</b> yang anda pesan.",
+      "confirmation": "Mohon di tunggu :)"
+    },
+    "wrongWord": {
+      "purpose": "wrong",
+      "message": "Maaf, Anda sepertinya salah memasukan perintah sesuai intruksi kami.",
+      "confirmation": "Mohon di coba kembali"
+    },
+    "ending": {
+      "purpose": "close",
+      "message": "Terima kasih sudah pesan di Hotel & Resto Food Lestari!",
+      "confirmation": "Saya harap Anda puas dengan masakan kami"
+    }
+  }
+}
