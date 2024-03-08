@@ -1,6 +1,7 @@
 import dataMessages from "../data/messages.json";
 
 export const analyzeNextSteps = (userResponse, purposeMenu, purposeDeliver) => {
+  const showMenu = userResponse.toLowerCase();
   const menuOne = userResponse.includes('1');
   const menuTwo = userResponse.includes('2');
   const menuThree = userResponse.includes('3');
@@ -14,7 +15,7 @@ export const analyzeNextSteps = (userResponse, purposeMenu, purposeDeliver) => {
   let wrongWordBot = dataMessages.data.wrongWord;
   let endingBot = dataMessages.data.ending;
   
-  return userResponse === "tampilkan menu"
+  return showMenu.includes("tampilkan menu")
     ? {
         purpose: questionBot.purpose,
         message: questionBot.message,
