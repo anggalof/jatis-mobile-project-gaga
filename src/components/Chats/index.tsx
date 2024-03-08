@@ -64,8 +64,8 @@ const Chats: React.FC<Props> = props => {
 
   return (
     <div className="message-container" ref={bodyRef}>
-      {messages.map(chat => (
-        <div key={chat.message}>
+      {messages.map((chat, index) => (
+        <div key={`${chat.purpose}-${index}`}>
           <div className={`message-wrapper ${chat.sender === 'bot' ? 'bot-left' : 'user-right'}`}>
             {chat.sender === 'bot' && <img src="/bot.png" alt={chat.sender} />}
             <div className="message-detail">
@@ -73,16 +73,14 @@ const Chats: React.FC<Props> = props => {
                 <p dangerouslySetInnerHTML={{ __html: chat.message }} />
                 {chat.options ? (
                   <div className="options">
-                    <div>
-                      <i className="far fa-hand-pointer"></i>
-                    </div>
                     {chat.options.map(option => (
-                      <p
-                        dangerouslySetInnerHTML={{ __html: option }}
-                        onClick={e => props.optionClick(e)}
-                        data-id={option}
-                        key={option}
-                      />
+                      <div key={option}>
+                        <p
+                          dangerouslySetInnerHTML={{ __html: option }}
+                          onClick={e => props.optionClick(e)}
+                          data-id={option}
+                        />
+                      </div>
                     ))}
                   </div>
                 ) : null}
