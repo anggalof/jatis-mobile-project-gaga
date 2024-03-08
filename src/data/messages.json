@@ -1,0 +1,9 @@
+{
+  "data": {
+    "introduction": {
+      "purpose": "introduction",
+      "message":"Hi, selamat datang di Hotel & Resto Food Lestari, <br /> jika mau memesan menu yang tersedia di kami, <br />ketik <b>'tampilkan menu</b>'",
+      "sender": "bot"
+    }
+  }
+}
