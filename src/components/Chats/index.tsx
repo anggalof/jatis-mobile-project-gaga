@@ -31,15 +31,13 @@ const Chats: React.FC<Props> = props => {
 
   useEffect(() => {
     if (messages.length === 0) {
-      setTimeout(() => {
-        setMessages([
-          {
-            purpose: data.introduction.purpose,
-            message: data.introduction.message,
-            sender: data.introduction.sender
-          }
-        ]);
-      }, 1000);
+      setMessages([
+        {
+          purpose: data.introduction.purpose,
+          message: data.introduction.message,
+          sender: data.introduction.sender
+        }
+      ]);
     } else {
       let tempArray = [...messages];
       tempArray.push({ message: props.sendUserResponse, sender: "user" });

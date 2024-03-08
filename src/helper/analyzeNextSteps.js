@@ -1,6 +1,6 @@
 import dataMessages from "../data/messages.json";
 
-export const analyzeNextSteps = (step, userResponse, purposeMenu, purposeDeliver) => {
+export const analyzeNextSteps = (userResponse, purposeMenu, purposeDeliver) => {
   const menuOne = userResponse.includes('1');
   const menuTwo = userResponse.includes('2');
   const menuThree = userResponse.includes('3');

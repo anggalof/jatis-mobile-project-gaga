@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Chats from "../Chats";
+import FlowChart from "../FlowChart";
 import { analyzeNextSteps } from "../../helper/analyzeNextSteps";
 import "./index.scss";
 
@@ -13,7 +14,7 @@ interface ResponseBotObject {
 
 const Chatbot: React.FC = () => {
   const [userResponse, setUserResponse] = useState<string>("");
-  const [step, setStep] = useState<number>(0);
+  const [flowChartVisible, setFlowChartVisible] = useState<boolean>(false);
   const [purposeMenu, setPurposeMenu] = useState<number>(0);
   const [purposeDeliver, setPurposeDeliver] = useState<number>(0);
   const [botResponse, setBotResponse] = useState<ResponseBotObject>({
@@ -25,10 +26,9 @@ const Chatbot: React.FC = () => {
   const [sendUserResponse, setSendUserResponse] = useState<string>("");
 
   const setNextStep = (response: string) => {
-    setStep(prevState => prevState + 1);
     setSendUserResponse(response);
     
-    let res = analyzeNextSteps(step, response, purposeMenu, purposeDeliver);
+    let res = analyzeNextSteps(response, purposeMenu, purposeDeliver);
     
     if (res?.purpose?.includes('menu')) {
       setPurposeDeliver(1);
@@ -58,32 +58,44 @@ const Chatbot: React.FC = () => {
     setNextStep(userResponse);
   };
 
+  const handleFlowChart = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    setFlowChartVisible(!flowChartVisible);
+  };
+
   return (
-    <div className="max-w-screen mx-auto p-10">
-      <div className="chat-container">
-        <div className="header">
-          <img src="/icon-resto.png" alt="icon-resto" />
-          <div className="header-name">
-            Hotel & Resto Food Lestari
+    <React.Fragment>
+      {flowChartVisible ? (
+        <FlowChart handleFlowChart={handleFlowChart} />
+      ) : (
+        <div className="max-w-screen mx-auto p-10">
+          <div className="chat-container">
+            <div className="header">
+              <img src="/icon-resto.png" alt="icon-resto" />
+              <div className="header-name">
+                Hotel & Resto Food Lestari
+              </div>
+              <div className="btn-flowchart" onClick={handleFlowChart}>Show Flow Chart</div>
+            </div>
+            <Chats
+              userResponse={userResponse}
+              botResponse={botResponse}
+              sendUserResponse={sendUserResponse}
+              optionClick={optionClick}
+            />
+            <form onSubmit={e => handleSubmit(e)} className="form-container">
+              <input
+                onChange={e => handleInputChange(e)}
+                value={userResponse}
+              ></input>
+              <button>
+                <img src="/send.png" alt="send" />
+              </button>
+            </form>
           </div>
         </div>
-        <Chats
-          userResponse={userResponse}
-          botResponse={botResponse}
-          sendUserResponse={sendUserResponse}
-          optionClick={optionClick}
-        />
-        <form onSubmit={e => handleSubmit(e)} className="form-container">
-          <input
-            onChange={e => handleInputChange(e)}
-            value={userResponse}
-          ></input>
-          <button>
-            <img src="/send.png" alt="send" />
-          </button>
-        </form>
-      </div>
-    </div>
+      )}
+    </React.Fragment>
   );
 };
 
