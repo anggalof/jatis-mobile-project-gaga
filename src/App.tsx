@@ -1,9 +1,9 @@
 import React from 'react';
-import Chatbot from "./components/Chatbox";
+import FlowCharts from "./components/FlowCharts";
 
 const App: React.FC = () => {
   return (
-    <Chatbot />
+    <FlowCharts />
   );
 };
 
