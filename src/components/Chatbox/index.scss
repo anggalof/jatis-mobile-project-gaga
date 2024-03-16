@@ -12,19 +12,6 @@
   }
 }
 
-.mx-auto {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-.p-10 {
-  padding: 10rem;
-
-  @media (max-width: 768px) {
-    padding: 0;
-  }
-}
-
 b {
   font-style: italic;
 }

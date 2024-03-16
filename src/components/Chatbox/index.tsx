@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Chats from "../Chats";
-import FlowChart from "../FlowChart";
 import { analyzeNextSteps } from "../../helper/analyzeNextSteps";
 import "./index.scss";
 
@@ -12,9 +11,12 @@ interface ResponseBotObject {
   confirmation?: string;
 }
 
-const Chatbot: React.FC = () => {
+interface MyComponentProps {
+  onHandleChatBox: () => void;
+}
+
+const Chatbox: React.FC<MyComponentProps> = ({ onHandleChatBox }) => {
   const [userResponse, setUserResponse] = useState<string>("");
-  const [flowChartVisible, setFlowChartVisible] = useState<boolean>(false);
   const [purposeMenu, setPurposeMenu] = useState<number>(0);
   const [purposeDeliver, setPurposeDeliver] = useState<number>(0);
   const [botResponse, setBotResponse] = useState<ResponseBotObject>({
@@ -58,45 +60,36 @@ const Chatbot: React.FC = () => {
     setNextStep(userResponse);
   };
 
-  const handleFlowChart = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    setFlowChartVisible(!flowChartVisible);
-  };
-
   return (
     <React.Fragment>
-      {flowChartVisible ? (
-        <FlowChart handleFlowChart={handleFlowChart} />
-      ) : (
-        <div className="max-w-screen mx-auto p-10">
-          <div className="chat-container">
-            <div className="header">
-              <img src="/icon-resto.png" alt="icon-resto" />
-              <div className="header-name">
-                Hotel & Resto Food Lestari
-              </div>
-              <div className="btn-flowchart" onClick={handleFlowChart}>Show Flow Chart</div>
+      <div className="max-w-screen mx-auto py-[10rem]">
+        <div className="chat-container">
+          <div className="header">
+            <img src="/icon-resto.png" alt="icon-resto" />
+            <div className="header-name">
+              Hotel & Resto Food Lestari
             </div>
-            <Chats
-              userResponse={userResponse}
-              botResponse={botResponse}
-              sendUserResponse={sendUserResponse}
-              optionClick={optionClick}
-            />
-            <form onSubmit={e => handleSubmit(e)} className="form-container">
-              <input
-                onChange={e => handleInputChange(e)}
-                value={userResponse}
-              ></input>
-              <button>
-                <img src="/send.png" alt="send" />
-              </button>
-            </form>
+            <div className="btn-flowchart" onClick={onHandleChatBox}>Show Flow Chart</div>
           </div>
+          <Chats
+            userResponse={userResponse}
+            botResponse={botResponse}
+            sendUserResponse={sendUserResponse}
+            optionClick={optionClick}
+          />
+          <form onSubmit={e => handleSubmit(e)} className="form-container">
+            <input
+              onChange={e => handleInputChange(e)}
+              value={userResponse}
+            ></input>
+            <button>
+              <img src="/send.png" alt="send" />
+            </button>
+          </form>
         </div>
-      )}
+      </div>
     </React.Fragment>
   );
 };
 
-export default Chatbot;
+export default Chatbox;

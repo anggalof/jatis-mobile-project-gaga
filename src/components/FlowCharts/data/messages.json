@@ -1,0 +1,25 @@
+{
+  "data": {
+    "introduction": {
+      "message": "Hallo, apa ada yang bisa saya bantu?"
+    },
+    "showMenu": {
+      "message": "Berikut menu yang ada dikita saat ini! \n1. Nasi Goreng \n2. Soto \nPilih no berapa yang mau Anda pesan"
+    },
+    "menuOne": {
+      "message": "Ok, akan segera kami kirim untuk NASI GORENG pesanan Anda. Mohon ditunggu."
+    },
+    "menuTwo": {
+      "message": "Ok, akan segera kami kirim untuk SOTO pesanan Anda. Mohon ditunggu."
+    },
+    "wrongSentence": {
+      "message": "Silakan ketik 'tampilkan menu' untuk melihat menu kami"
+    },
+    "notChoose": {
+      "message": "Silakan pilih menu dengan masukan angka no berapa yang mau dipilih"
+    },
+    "ending": {
+      "message": "Terima kasih sudah pesan di kami! ditunggu pesanannya."
+    }
+  }
+}
