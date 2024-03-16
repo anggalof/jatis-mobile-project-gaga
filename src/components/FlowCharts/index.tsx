@@ -230,7 +230,7 @@ const App = () => {
   // Restore flow chart dari local storage
   const onRestore = useCallback(() => {
     const restoreFlow = async () => {
-      const dataFromLocalStorage = localStorage.getItem('key');
+      const dataFromLocalStorage = localStorage.getItem(flowKey);
       const flow: any = dataFromLocalStorage !== null ? JSON.parse(dataFromLocalStorage) : null;
 
       if (flow) {
