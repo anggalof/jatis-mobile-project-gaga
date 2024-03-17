@@ -129,17 +129,18 @@ const App = () => {
         );
         setNodes(updatedNodes);
         setNodeName(stringWithLineBreak);
+        return false;
       } else {
         const updatedNodes = nodes.map(node =>
           node.id === params.target ? { ...node, data: { label: data.wrongSentence.message } } : node
         );
         setNodes(updatedNodes);
         setNodeName(data.wrongSentence.message);
+        return false;
       }
     }
-
-    const checkIdChoose = match[0].id === 'node_2';
-    if (checkUser && checkIdChoose) {
+    
+    if (checkUser) {
       const checkBot = match[0].data.label.toLowerCase()
     
       if (checkBot.includes("1")) {
@@ -149,6 +150,7 @@ const App = () => {
         );
         setNodes(updatedNodes);
         setNodeName(stringWithLine);
+        return false;
       } else if (checkBot.includes("2")) {
         const stringWithLine = data.menuTwo.message;
         const updatedNodes = nodes.map(node =>
@@ -156,23 +158,27 @@ const App = () => {
         );
         setNodes(updatedNodes);
         setNodeName(stringWithLine);
+        return false;
       } else {
-        const updatedNodes = nodes.map(node =>
-          node.id === params.target ? { ...node, data: { label: data.notChoose.message } } : node
-        );
-        setNodes(updatedNodes);
-        setNodeName(data.notChoose.message)
+        const temp = match[0].id.split('_');
+        const checkTemp = temp[temp.length - 1];
+        const checkIdFinish = parseInt(checkTemp) > 5;
+        if (checkIdFinish) {
+          const message = data.ending.message;
+          const updatedNodes = nodes.map(node =>
+            node.id === params.target ? { ...node, data: { label: message } } : node
+          );
+          setNodes(updatedNodes);
+          setNodeName(message);
+        } else {
+          const updatedNodes = nodes.map(node =>
+            node.id === params.target ? { ...node, data: { label: data.notChoose.message } } : node
+          );
+          setNodes(updatedNodes);
+          setNodeName(data.notChoose.message)
+          return false;
+        }
       }
-    }
-
-    const checkIdFinish = match[0].id === 'node_4';
-    if (checkUser && checkIdFinish) {
-      const message = data.ending.message;
-      const updatedNodes = nodes.map(node =>
-        node.id === params.target ? { ...node, data: { label: message } } : node
-      );
-      setNodes(updatedNodes);
-      setNodeName(message);
     }
   };
 
@@ -186,6 +192,7 @@ const App = () => {
         selected: n.id === node.id,
       }))
     );
+    console.log('edge', edges);
   }, []);
 
   const { setViewport } = useReactFlow();
